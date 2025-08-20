@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBR VITS Engineering College - CSE (AI) Official Website</title>
+    <link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Backend.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* These styles are kept here as they are highly specific or contain keyframes */
+        body {
+            padding-top: 40px; /* To account for the fixed scrolling text */
+        }
+        .scrolling-text {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #bad4e6;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        .scrolling-text a {
+            color: #8f5b83;
+            text-decoration: none;
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 25s linear infinite;
+            font-weight: bold;
+        }
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .blink-new {
+            color: yellow;
+            font-weight: bold;
+            margin-right: 10px;
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+        /* --- New CSS for transparency --- */
+        /* These are transparency styles specific to certain sections. */
+        /* Events Section - main container */
+        #events {
+            background-color: rgba(255, 255, 255, 0.6); /* White with 60% transparency */
+        }
+        /* Leadership Section - individual cards */
+        .leadership-grid > div { /* Targets the div elements directly under leadership-grid */
+            background-color: rgba(255, 255, 255, 0.6); /* White with 60% transparency */
+        }
+        /* Chairman's Message section within #chairman */
+        #chairman .mt-10 { /* Target the specific div for chairman's message */
+            background-color: rgba(255, 255, 255, 0.6); /* White with 60% transparency */
+            padding: 20px; /* Add some padding for better appearance */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        /* Basic Styles for other sections (if Backend.css doesn't cover them entirely) */
+        header {
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .founder-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .text-container h1 {
+            font-size: 1.8em;
+            color: #333;
+            margin: 0;
+        }
+        .text-container p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 5px 0 0;
+        }
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .hero {
+            background: url('https://pbrvits.ac.in/images/hero_bg.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .hero p.typing {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            min-height: 1.5em; /* Ensure space for typing text */
+        }
+        .cta-button {
+            background-color: #007bff; /* Blue */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease; /* Smooth transition for hover */
+        }
+        .cta-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .page-section {
+            padding: 40px 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            border-bottom: 1px solid #eee;
+        }
+        .page-section h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .page-section ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        .page-section li {
+            margin-bottom: 5px;
+        }
+        .iframeMap {
+            width: 100%;
+            max-width: 520px;
+            margin: 20px auto;
+        }
+        .text-center {
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer {
+            background-color: #f3f3f3;
+            color: #333;
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer-copyright {
+            padding-top: 10px;
+        }
+        .footer-copyright p {
+            margin: 0;
+        }
+        .footer-copyright button {
+            margin-top: 15px;
+            margin: 5px; /* Add some margin between buttons */
+        }
+        /* Styling for the new registration buttons */
+        .register-button {
+            /* Inherit styles from .cta-button or duplicate them */
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px; /* Same padding as cta-button */
+            background-color: #007bff; /* Same blue as cta-button */
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em; /* Same font-size as cta-button */
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .register-button:hover {
+            background-color: #0056b3; /* Same hover as cta-button */
+        }
+        /* --- Page Flip Effect Styles --- */
+        .page-flip {
+            perspective: 1000px;
+            position: relative;
+            width: 100%; /* Make it responsive within grid column */
+            max-width: 300px; /* Max width for larger screens */
+            height: 350px; /* Adjusted height for content */
+            margin: 0 auto; /* Center within its grid cell */
+            background-color: rgba(255, 255, 255, 0.6); /* Consistent transparency */
+            border-radius: 12px; /* Consistent rounded corners */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Consistent shadow */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover */
+        }
+        .page-flip:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+        }
+        .page-flip .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .page-flip .page.front {
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.6); /* Consistent transparency */
+            border-radius: 12px;
+            color: #333; /* Dark text for readability */
+        }
+        .page-flip .page.back {
+            transform: rotateY(180deg);
+            background-color: rgba(255, 255, 255, 0.6); /* Consistent transparency */
+            border-radius: 12px;
+            color: #333; /* Dark text for readability */
+        }
+        .page-flip:hover .page.front {
+            transform: rotateY(-180deg);
+        }
+        .page-flip:hover .page.back {
+            transform: rotateY(0deg);
+        }
+        .page-flip .page h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #007bff; /* Use a highlight color */
+        }
+        .page-flip .page p {
+            font-size: 0.9em;
+            color: #555;
+            background: none; /* Remove background from p inside flip card */
+            box-shadow: none;
+            padding: 0;
+            max-width: none;
+        }
+        .page-flip .page img {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+            display: block; /* Remove extra space below image */
+        }
+
+        /* --- Advanced Vintage Time Styles --- */
+        .glass-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            /* Glassmorphism Effect */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+            color: #e0f7fa; /* Light cyan */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-panel .time {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .glass-panel .date {
+            font-size: 0.9rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        /* --- Faculty Profiles Section Styles (from previous request) --- */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #004d40;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faculty-profiles-container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+            justify-items: center;
+            margin: 0 auto;
+            display: none; /* This is the new style to hide the profiles by default */
+        }
+
+        /* Card container and flip effect */
+        .profile-card {
+            width: 100%;
+            height: 380px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            cursor: pointer;
+        }
+
+        .profile-card:hover {
+            transform: rotateY(180deg);
+        }
+
+        /* Individual faces of the card */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Front face styling */
+        .card-front {
+            background-color: #ffffff;
+        }
+
+        .profile-card:hover .card-front {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* Gradient border effect */
+            border: 4px solid transparent;
+            background: linear-gradient(to right, #3498db, #8e44ad) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+            word-wrap: break-word;
+            max-width: 100%;
+        }
+        
+        .role {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #7f8c8d;
+            margin-top: 4px;
+        }
+
+        /* Back face styling */
+        .card-back {
+            background: linear-gradient(45deg, #16a085, #2980b9);
+            color: #ecf0f1;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 40px;
+        }
+        
+        .card-back .details p {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .card-back .details strong {
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .card-back .details svg {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+            fill: currentColor; /* Use current text color for the icon */
+        }
+        
+        /* Media Queries for responsiveness */
+        @media (max-width: 600px) {
+            .faculty-profiles-container {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .card-back {
+                padding-left: 24px;
+            }
+        }
+
+        /* Styles for the new AI Student section and button */
+        .ai-student-section {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .ai-student-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .ai-student-section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .ai-student-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .ai-student-button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="background-1">
+
+<div class="glass-panel">
+    <div class="time" id="vintage-time">--:--:--</div>
+    <div class="date" id="vintage-date"></div>
+</div>
+
+<div class="scrolling-text">
+    <a href="#events">
+        <span class="blink-new">NEW</span>Latest Events: Upcoming AWS Workshop: Call for ParticipationWe are pleased to announce that our department will be hosting an Amazon Web Services (AWS) workshop in 2025, with dates to be confirmed shortly. We cordially invite all interested individuals to participate in this enriching event. Your active involvement and enthusiasm are crucial to making this workshop a resounding success. We look forward to your participation and contribution.
+    </a>
+</div>
+
+<header>
+    <div class="title-container">
+        <img class="founder-image" src="https://pbrvits.ac.in/images/clg_banner_founder.png" alt="Founder">
+        <div class="text-container">
+            <h1>Parvatha Reddy Babul Reddy Visvodaya Institute Of Technology and Science</h1>
+            <h11>Dept. of CSE - (ARTIFICIAL INTELLIGENCE) Official Website</h11>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <a href="#overview">Overview</a>
+    <a href="#motive">Our Motives</a>
+    <a href="#events">Events</a>
+    <a href="#chairman">Chairman's Message</a>
+    <a href="#faculty-profiles">Faculty</a>
+    <a href="#ai-students">AI Students</a>
+    <a href="#discover-more">Discover More</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero page-section">
+    <h1>Welcome to PBR VITS Engineering College</h1>
+    <p id="typing-text" class="typing"></p>
+    <button class="cta-button" id="participateButton">Participate Now</button>
+</section>
+
+<section id="overview" class="page-section">
+    <h2>College Overview</h2>
+    <p>Parvatha Reddy Babul Reddy Engineering College was established in 1998 with a mission to provide quality education.</p>
+</section>
+
+<section id="motive" class="page-section">
+    <h2>Our Motives</h2>
+    <h3><em>"Empowering Minds, Shaping Futures"</em></h3>
+    <p><strong>Tagline:</strong> Learn, Grow, Achieve</p>
+    <p>To provide a supportive and inclusive learning environment...</p>
+    <h3>Core Values</h3>
+    <ul>
+        <li><strong>Academic Excellence</strong></li>
+        <li><strong>Innovation</strong></li>
+        <li><strong>Diversity and Inclusion</strong></li>
+        <li><strong>Community Engagement</strong></li>
+        <li><strong>Personal Growth</strong></li>
+    </ul>
+</section>
+
+<section id="events" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-800 mb-10">Upcoming Events</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-gray-800">AWS Cloud Workshop</h3>
+                    <p class="text-sm text-gray-600">Date: August 5, 2025</p>
+                    <p class="text-gray-700 mt-2">A hands-on workshop introducing students to Amazon Web Services and cloud computing fundamentals.</p>
+                    <a href="https://forms.gle/xwbU3rjnwiFJmuKy7" target="_blank" class="register-button">Register Now</a>
+                </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-gray-800">AI & ML National Seminar</h3>
+                    <p class="text-sm text-gray-600">Date: August 12, 2025</p>
+                    <p class="text-gray-700 mt-2">Experts from academia and industry discuss the future of Artificial Intelligence and Machine Learning.</p>
+                    <a href="https://forms.gle/xwbU3rjnwiFJmuKy7" target="_blank" class="register-button">Register Now</a>
+                </div>
+            </div>
+            <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-gray-800">Coding Challenge 2025</h3>
+                    <p class="text-sm text-gray-600">Date: August 20, 2025</p>
+                    <p class="text-gray-700 mt-2">Join our inter-college coding competition and win exciting prizes! Open to all CSE students.</p>
+                    <a href="https://forms.gle/xwbU3rjnwiFJmuKy7" target="_blank" class="register-button">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="chairman" class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-red-600 text-2xl md:text-3xl font-bold text-center mb-6">Our Leadership</h2>
+        <div class="leadership-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-5 rounded-lg shadow-md text-center">
+                <img src="https://pbrvits.ac.in/images/Members/VITS_princ.jpg" alt="Dr. NAGAM SESHAIH" class="rounded-full mx-auto mb-3 w-20 h-20 object-cover">
+                <h3 class="text-lg font-semibold">Dr. NAGAM SESHAIH</h3>
+                <p class="text-gray-600 text-sm">Ph.D. in Thermal Science</p>
+                <p class="text-gray-600 text-sm">Principal</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-md text-center">
+                <img src="https://pbrvits.ac.in/images/Members/chairman.jpg" alt="Dr. Vidyadhar Kumar Reddy" class="rounded-full mx-auto mb-3 w-20 h-20 object-cover">
+                <h3 class="text-lg font-semibold">Dr. Vidyadhar Kumar Reddy</h3>
+                <p class="text-gray-600 text-sm">Chairman</p>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-md text-center">
+                <img src="https://pbrvits.ac.in/images/Members/rector.jpg" alt="D. Vinay Kumar Reddy" class="rounded-full mx-auto mb-3 w-20 h-20 object-cover">
+                <h3 class="text-lg font-semibold">D. Vinay Kumar Reddy</h3>
+                <p class="text-gray-600 text-sm">Rector</p>
+            </div>
+        </div>
+        <div class="mt-10 text-center max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-red-700 mb-3">Chairman's Message</h2>
+            <p class="text-gray-700 mb-2">"At PBR Engineering College, we believe education should empower students to become thoughtful leaders and responsible citizens.Our vision is to provide quality technical education that prepares our students to meet global challenges with confidence and integrity."</p>
+            <p class="font-semibold mt-2 text-gray-800">Founder Chairman: Ramachandra Reddy</p>
+            <p class="text-gray-700">Sons: Dr. Vidyadhar Kumar Reddy (Chairman), D. Vinay Kumar Reddy (Rector)</p>
+        </div>
+    </div>
+</section>
+<section id="faculty-profiles" class="py-12 bg-white">
+    <h2 class="section-title">Meet Our Faculty</h2>
+    <div class="text-center mb-8">
+        <button id="toggleFacultyButton" class="cta-button">Show Faculty Profiles</button>
+    </div>
+    <div class="faculty-profiles-container">
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/2c3e50/ffffff?text=Profile+1" alt="Profile 1">
+                <h3 class="name">Dr. A. P. J. Abdul Kalam</h3>
+                <p class="role">Head of Department</p>
+            </div>
+            <div class="card-face card-back">
+                <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Quantum Computing
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 001
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/e67e22/ffffff?text=Profile+2" alt="Profile 2">
+                <h3 class="name">Dr. Marie Curie</h3>
+                <p class="role">Professor</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Machine Learning
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 002
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/3498db/ffffff?text=Profile+3" alt="Profile 3">
+                <h3 class="name">Isaac Newton</h3>
+                <p class="role">Assistant Professor</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Data Science
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 003
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/9b59b6/ffffff?text=Profile+4" alt="Profile 4">
+                <h3 class="name">Ada Lovelace</h3>
+                <p class="role">Associate Professor</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Computer Vision
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)</p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 004
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/1abc9c/ffffff?text=Profile+5" alt="Profile 5">
+                <h3 class="name">Alan Turing</h3>
+                <p class="role">Senior Lecturer</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Natural Language Processing
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 005
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/f39c12/ffffff?text=Profile+6" alt="Profile 6">
+                <h3 class="name">Grace Hopper</h3>
+                <p class="role">Lecturer</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Robotics
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 006
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/d35400/ffffff?text=Profile+7" alt="Profile 7">
+                <h3 class="name">Leonardo da Vinci</h3>
+                <p class="role">Professor</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Computer Graphics
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 007
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/c0392b/ffffff?text=Profile+8" alt="Profile 8">
+                <h3 class="name">Galileo Galilei</h3>
+                <p class="role">Assistant Professor</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Algorithms
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 008
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/8e44ad/ffffff?text=Profile+9" alt="Profile 9">
+                <h3 class="name">Katherine Johnson</h3>
+                <p class="role">Associate Professor</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> High-Performance Computing
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 009
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/34495e/ffffff?text=Profile+10" alt="Profile 10">
+                <h3 class="name">Nikola Tesla</h3>
+                <p class="role">Senior Lecturer</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Deep Learning
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 010
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/f1c40f/ffffff?text=Profile+11" alt="Profile 11">
+                <h3 class="name">Rosalind Franklin</h3>
+                <p class="role">Lecturer</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Bioinformatics
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 011
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-card">
+            <div class="card-face card-front">
+                <img src="https://placehold.co/150x150/e74c3c/ffffff?text=Profile+12" alt="Profile 12">
+                <h3 class="name">Marie Maynard Daly</h3>
+                <p class="role">Researcher</p>
+            </div>
+            <div class="card-face card-back">
+                 <div class="details">
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <strong>Subject:</strong> Network Security
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+                        <strong>Department:</strong> CSE (AI)
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-1c0-1.65-3.37-2-7-2s-7 .35-7 2v1z"/></svg>
+                        <strong>Emp. No:</strong> 012
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<section id="ai-students" class="page-section">
+    <div class="ai-student-section">
+        <h2>For AI Students</h2>
+        <p>This section is specifically for students of the CSE (AI) department. Here you'll find resources, announcements, and opportunities tailored to your specialization. Click the button below to access more content relevant to your field of study!</p>
+        <a href="https://ai-dept-portal.preview.emergentagent.com" target="_blank" class="ai-student-button">
+            Go to AI Student Portal App
+        </a>
+    </div>
+</section>
+<hr />
+<section id="discover-more" class="page-section">
+    <h2>Discover More</h2>
+    <p class="text-center mb-10">Hover over these cards to reveal exciting aspects of our college life, research, and community!</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="page-flip">
+            <div class="page front">
+                <h3>Campus Life</h3>
+                <p>Explore student activities, vibrant clubs, and engaging events that make our campus a lively place.</p>
+            </div>
+            <div class="page back">
+                <img src="https://placehold.co/300x350/007bff/ffffff?text=Campus+Life" alt="Campus Life Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <div class="page-flip">
+            <div class="page front">
+                <h3>Research & Innovation</h3>
+                <p>Dive into our cutting-edge research projects, innovative labs, and opportunities for student involvement.</p>
+            </div>
+            <div class="page back">
+                <img src="https://placehold.co/300x350/28a745/ffffff?text=Research" alt="Research & Innovation Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <div class="page-flip">
+            <div class="page front">
+                <h3>Alumni Network</h3>
+                <p>Connect with our vast and successful alumni network, a valuable resource for mentorship and career opportunities.</p>
+            </div>
+            <div class="page back">
+                <img src="https://placehold.co/300x350/ffc107/ffffff?text=Alumni" alt="Alumni Network Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <div class="page-flip">
+            <div class="page front">
+                <h3>Student Support</h3>
+                <p>Learn about our comprehensive support services, including counseling, academic advising, and career guidance.</p>
+            </div>
+            <div class="page back">
+                <img src="https://placehold.co/300x350/dc3545/ffffff?text=Support" alt="Student Support Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <div class="page-flip">
+            <div class="page front">
+                <h3>Industry Collaborations</h3>
+                <p>Discover how our partnerships with leading tech companies provide students with real-world experience and internships.</p>
+            </div>
+            <div class="page back">
+                <img src="https://placehold.co/300x350/6f42c1/ffffff?text=Industry" alt="Industry Collaborations Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <div class="page-flip">
+            <div class="page front">
+                <h3>Global Opportunities</h3>
+                <p>Explore study abroad programs, international exchange opportunities, and global internships.</p>
+            </div>
+            <div class="page back">
+                <img src="https://placehold.co/300x350/20c997/ffffff?text=Global" alt="Global Opportunities Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+    <p class="text-center mt-8">Hover over the cards to discover more about PBR VITS!</p>
+</section>
+
+<hr/>
+<section id="contact" class="page-section">
+    <h2>Contact Us</h2>
+    <p><strong>Address:</strong> Kavali, Nellore District, AP, India</p>
+    <p><strong>Phone:</strong> ‪+91-7468393888‬</p>
+    <p><strong>Email:</strong> contact@pbrcollege.edu</p>
+
+    <div class="col-md-4">
+        <div class="iframeMap">
+            <iframe id="gmap_canvas" height="275" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=PBR%20Visvodaya%20Institute%20of%20Technology%20and%20Science,%20Kavali,%20Andhra%20Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+<hr />
+
+<footer>
+    <section class="footer-copyright">
+        <div class="container-fluid">
+            <div class="row">
+                <p class="text-center">© 2025 - PBRVITS-CSE-(AI) web presented by @139,@163</p>
+            </div>
+            <div class="text-center" style="margin-top: 10px;"></div>
+        </div>
+    </section>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Typed.js for typing effect
+        new Typed('#typing-text', {
+            strings: ["CSE - (ARTIFICIAL-INTELLIGENCE)"],
+            typeSpeed: 100,
+            backSpeed: 50,
+            loop: true
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Button click event for hero section (using its specific ID)
+        document.getElementById('participateButton').addEventListener('click', function() {
+            window.open('https://forms.gle/xwbU3rjnwiFJmuKy7', '_blank');
+        });
+
+        // Add a click event to the scrolling text link
+        document.querySelector('.scrolling-text a').addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                window.open(href, '_blank');
+            }
+        });
+
+        // Function to update the vintage time display
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            vintageTime.textContent = timeString;
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const dayName = days[now.getDay()];
+            const dateString = now.toLocaleDateString();
+            vintageDate.textContent = `${dayName}, ${dateString}`;
+        }
+
+        // New JavaScript for the "Show/Hide" button
+        const toggleFacultyButton = document.getElementById('toggleFacultyButton');
+        const facultyContainer = document.querySelector('.faculty-profiles-container');
+        
+        toggleFacultyButton.addEventListener('click', function() {
+            if (facultyContainer.style.display === 'grid') {
+                facultyContainer.style.display = 'none';
+                toggleFacultyButton.textContent = 'Show Faculty Profiles';
+            } else {
+                facultyContainer.style.display = 'grid';
+                toggleFacultyButton.textContent = 'Hide Faculty Profiles';
+            }
+        });
+
+        // Initial calls
+        updateTime();
+        setInterval(updateTime, 1000); // Update time every second
+    });
+</script>
+
+</body>
+</html>
